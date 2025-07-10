@@ -74,3 +74,13 @@ function displayModulusResult() {
   document.getElementById("Modulus").innerHTML =
     "The result of 29 % 5 is: " + result;
 }
+
+function displayNegationResult() {
+  // Use the negation operator
+  let number = 10;
+  let result = -number;
+
+  // Display the result in the paragraph with id "Negation"
+  document.getElementById("Negation").innerHTML =
+    "The result of negating 10 is: " + result;
+}
