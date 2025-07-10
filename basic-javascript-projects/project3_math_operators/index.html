@@ -1,0 +1,92 @@
+<!DOCTYPE >
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./js/main.js"></script>
+    <style>
+      :root {
+        /*colors*/
+        --color-primary: #007bff;
+        --color-secondary: #6c757d;
+        --color-success: #28a745;
+        --color-danger: #dc3545;
+        --color-light: #f8f9fa;
+        --color-dark: #343a40;
+        --color-text: #212529;
+        --color-background: #ffffff;
+        --color-border: #dee2e6;
+
+        /* Typography */
+        --font-family-base: "Inter", sans-serif;
+        --font-size-base: 1rem; /* 16px */
+        --font-size-sm: 0.875rem; /* 14px */
+        --font-size-lg: 1.25rem; /* 20px */
+        --line-height-base: 1.5;
+        --heading-font-weight: 700;
+        --body-font-weight: 400;
+
+        /* Spacing */
+        --spacing-xxs: 0.25rem; /* 4px */
+        --spacing-xs: 0.5rem; /* 8px */
+        --spacing-sm: 0.75rem; /* 12px */
+        --spacing-md: 1rem; /* 16px */
+        --spacing-lg: 1.5rem; /* 24px */
+        --spacing-xl: 2rem; /* 32px */
+        --spacing-xxl: 3rem; /* 48px */
+
+        /* Border Radius */
+        --border-radius-sm: 0.25rem;
+        --border-radius-md: 0.5rem;
+        --border-radius-lg: 0.75rem;
+        --border-radius-full: 9999px;
+      }
+
+      button {
+        padding: var(--spacing-md);
+        background-color: var(--color-primary);
+        text-align: center;
+        border: none;
+        border-radius: var(--border-radius-full);
+        color: var(--color-light);
+        font-weight: 500;
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: center;
+      }
+      .assignment__div {
+        padding: var(--spacing-md);
+        box-shadow: 2px 2px 15px var(--color-secondary);
+        border-radius: var(--border-radius-lg);
+      }
+
+      .assignment__div div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .assignment__div h2,
+      p {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="assignment__div">
+        <div>
+          <h2>Math Operators Assignment</h2>
+
+          <h4>Addition Operation</h4>
+          <p>Click the button below to display the result of an addition operation using JavaScript.</p>
+          <br />
+          <p id="Math">Result will appear here</p>
+          <button onclick="displayAdditionResult()">Click to Add 10 + 5</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
