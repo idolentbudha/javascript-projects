@@ -99,3 +99,12 @@ function displayIncrementDecrementResult() {
 
   document.getElementById("IncrementDecrement").innerHTML = message;
 }
+
+function displayRandomNumber() {
+  // Generate a random number between 0 and 1
+  let randomValue = Math.random();
+
+  // Display the result
+  document.getElementById("Random").innerHTML =
+    "Random number between 0 and 1: " + randomValue;
+}
