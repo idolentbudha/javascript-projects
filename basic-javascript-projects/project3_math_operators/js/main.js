@@ -11,6 +11,28 @@ function displayAdditionResult() {
     "The result of " + number1 + " +" + number2 + " is: " + result;
 }
 
+function displayMultiplicationResult() {
+  // Perform a multiplication operation
+  let number1 = 7;
+  let number2 = 6;
+  let result = number1 * number2;
+
+  // Display the result in the paragraph with id "Multiplication"
+  document.getElementById("Multiplication").innerHTML =
+    "The result of " + number1 + " × " + number2 + " is: " + result;
+}
+
+function displayDivisionResult() {
+  // Perform a division operation
+  let number1 = 20;
+  let number2 = 4;
+  let result = number1 / number2;
+
+  // Display the result in the paragraph with id "Division"
+  document.getElementById("Division").innerHTML =
+    "The result of " + number1 + " ÷ " + number2 + " is: " + result;
+}
+
 function displaySubtractionResult() {
   // Perform a subtraction operation
   let number1 = 15;
