@@ -72,66 +72,101 @@
       p {
         text-align: center;
       }
+
+      .assignment__div summary {
+        font-size: var(--font-size-lg);
+        font-weight: 300;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
     <div class="wrapper">
       <div class="assignment__div">
-        <div>
-          <h2>Math Operators Assignment</h2>
-
-          <h4>Addition Operation</h4>
-          <p>
-            Click the button below to display the result of an addition
-            operation using JavaScript.
-          </p>
-          <br />
-          <p id="Math">Result will appear here</p>
-          <button onclick="displayAdditionResult()">Click to Add 10 + 5</button>
-        </div>
+        <details>
+          <summary>Math Operators Assignment</summary>
+          <div>
+            <h4>Addition Operation</h4>
+            <p>
+              Click the button below to display the result of an addition
+              operation using JavaScript.
+            </p>
+            <br />
+            <p><strong>Result:</strong></p>
+            <p id="Math">Result will appear here</p>
+            <button onclick="displayAdditionResult()">
+              Click to Add 10 + 5
+            </button>
+          </div>
+        </details>
         <br />
         <hr />
         <br />
-        <div>
-          <h2>Subtraction Operation</h2>
-          <p>
-            Click the button below to display the result of a subtraction
-            operation using JavaScript.
-          </p>
-          <br />
-          <p id="Subtraction">Result will appear here</p>
-          <button onclick="displaySubtractionResult()">
-            Click to Subtract 15 - 4
-          </button>
-        </div>
+        <details>
+          <summary>Subtraction Operation</summary>
+          <div>
+            <p>
+              Click the button below to display the result of a subtraction
+              operation using JavaScript.
+            </p>
+            <br />
+            <p id="Subtraction">Result will appear here</p>
+            <button onclick="displaySubtractionResult()">
+              Click to Subtract 15 - 4
+            </button>
+          </div>
+        </details>
         <br />
         <hr />
         <br />
-        <div>
-          <h2>Multiplication Operation</h2>
-          <p>
-            Click the button below to display the result of a multiplication operation
-            using JavaScript.
-          </p>
-          <br />
-          <p id="Multiplication">Result will appear here</p>
-          <button onclick="displayMultiplicationResult()">
-            Click to Multiply 7 × 6
-          </button>
-        </div>
+        <details>
+          <summary>Multiplication Operation</summary>
+          <div>
+            <p>
+              Click the button below to display the result of a multiplication
+              operation using JavaScript.
+            </p>
+            <br />
+            <p id="Multiplication">Result will appear here</p>
+            <button onclick="displayMultiplicationResult()">
+              Click to Multiply 7 × 6
+            </button>
+          </div>
+        </details>
         <br />
         <hr />
         <br />
-        <div>
-          <h2>Division Operation</h2>
-          <p>
-            Click the button below to display the result of a division operation using
-            JavaScript.
-          </p>
-          <br />
-          <p id="Division">Result will appear here</p>
-          <button onclick="displayDivisionResult()">Click to Divide 20 ÷ 4</button>
-        </div>
+        <details>
+          <summary>Division Operation</summary>
+          <div>
+            <p>
+              Click the button below to display the result of a division
+              operation using JavaScript.
+            </p>
+            <br />
+            <p id="Division">Result will appear here</p>
+            <button onclick="displayDivisionResult()">
+              Click to Divide 20 ÷ 4
+            </button>
+          </div>
+        </details>
+        <br />
+        <hr />
+        <br />
+        <details>
+          <summary>Multiple Mathematical Operations</summary>
+          <div>
+            <p>
+              Click the button below to perform and display several mathematical
+              operations using JavaScript.
+            </p>
+            <br />
+            <p id="MultipleOperations">Results will appear here</p>
+            <button onclick="displayMultipleOperations()">
+              Perform All Operations
+            </button>
+          </div>
+        </details>
       </div>
     </div>
   </body>

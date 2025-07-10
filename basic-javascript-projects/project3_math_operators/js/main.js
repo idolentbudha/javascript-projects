@@ -43,3 +43,25 @@ function displaySubtractionResult() {
   document.getElementById("Subtraction").innerHTML =
     "The result of " + number1 + " - " + number2 + " is: " + result;
 }
+
+function displayMultipleOperations() {
+  let addition = 12 + 3;
+  let subtraction = 12 - 3;
+  let multiplication = 12 * 3;
+  let division = 12 / 3;
+  let modulus = 12 % 3;
+
+  // Combined operation: ((12 + 3) * 3 - 12) / 3
+  let combined = ((12 + 3) * 3 - 12) / 3;
+
+  let message = `
+    12 + 3 = ${addition} <br />
+    12 - 3 = ${subtraction} <br />
+    12 × 3 = ${multiplication} <br />
+    12 ÷ 3 = ${division} <br />
+    12 % 3 = ${modulus} <br />
+    <strong>Combined operation ((12 + 3) × 3 - 12) ÷ 3 = ${combined}</strong>
+  `;
+
+  document.getElementById("MultipleOperations").innerHTML = message;
+}
