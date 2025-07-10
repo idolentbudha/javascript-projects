@@ -65,3 +65,12 @@ function displayMultipleOperations() {
 
   document.getElementById("MultipleOperations").innerHTML = message;
 }
+
+function displayModulusResult() {
+  // Perform a modulus operation
+  let result = 29 % 5;
+
+  // Display the result in the paragraph with id "Modulus"
+  document.getElementById("Modulus").innerHTML =
+    "The result of 29 % 5 is: " + result;
+}
