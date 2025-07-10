@@ -84,3 +84,18 @@ function displayNegationResult() {
   document.getElementById("Negation").innerHTML =
     "The result of negating 10 is: " + result;
 }
+
+function displayIncrementDecrementResult() {
+  let num = 10;
+
+  let incremented = ++num; // Pre-increment
+  let decremented = --num; // Pre-decrement back to original
+
+  let message = `
+    Starting from 10: <br />
+    After increment: ${incremented} <br />
+    After decrement: ${decremented}
+  `;
+
+  document.getElementById("IncrementDecrement").innerHTML = message;
+}
