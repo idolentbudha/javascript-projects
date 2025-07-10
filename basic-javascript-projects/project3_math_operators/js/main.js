@@ -108,3 +108,13 @@ function displayRandomNumber() {
   document.getElementById("Random").innerHTML =
     "Random number between 0 and 1: " + randomValue;
 }
+
+function displayMathObjectResult() {
+  // Use a Math object method
+  let number = 144;
+  let result = Math.sqrt(number); // Calculates the square root
+
+  // Display the result
+  document.getElementById("MathObject").innerHTML =
+    "The square root of " + number + " is: " + result;
+}
