@@ -1,0 +1,147 @@
+<!DOCTYPE >
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./js/main.js"></script>
+    <style>
+      :root {
+        /*colors*/
+        --color-primary: #007bff;
+        --color-secondary: #6c757d;
+        --color-success: #28a745;
+        --color-danger: #dc3545;
+        --color-light: #f8f9fa;
+        --color-dark: #343a40;
+        --color-text: #212529;
+        --color-background: #ffffff;
+        --color-border: #dee2e6;
+
+        /* Typography */
+        --font-family-base: "Inter", sans-serif;
+        --font-size-base: 1rem; /* 16px */
+        --font-size-sm: 0.875rem; /* 14px */
+        --font-size-lg: 1.25rem; /* 20px */
+        --line-height-base: 1.5;
+        --heading-font-weight: 700;
+        --body-font-weight: 400;
+
+        /* Spacing */
+        --spacing-xxs: 0.25rem; /* 4px */
+        --spacing-xs: 0.5rem; /* 8px */
+        --spacing-sm: 0.75rem; /* 12px */
+        --spacing-md: 1rem; /* 16px */
+        --spacing-lg: 1.5rem; /* 24px */
+        --spacing-xl: 2rem; /* 32px */
+        --spacing-xxl: 3rem; /* 48px */
+
+        /* Border Radius */
+        --border-radius-sm: 0.25rem;
+        --border-radius-md: 0.5rem;
+        --border-radius-lg: 0.75rem;
+        --border-radius-full: 9999px;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-family-base);
+        background: linear-gradient(to right, #e3f2fd, #ffffff);
+      }
+
+      button {
+        padding: var(--spacing-md);
+        background-color: var(--color-primary);
+        text-align: center;
+        border: none;
+        border-radius: var(--border-radius-full);
+        color: var(--color-light);
+        font-weight: 500;
+      }
+
+      button:hover {
+        background-color: var(--color-success);
+        transition: background-color 0.3s ease;
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: center;
+      }
+      .assignment__div {
+        padding: var(--spacing-lg);
+        box-shadow: 2px 2px 15px var(--color-secondary);
+        border-radius: var(--border-radius-lg);
+        background-color: white;
+        max-width: 400px;
+      }
+
+      .assignment__div div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .assignment__div h2,
+      p {
+        text-align: center;
+      }
+
+      .assignment__div p#Math,
+      .assignment__div p#Subtraction,
+      .assignment__div p#Multiplication,
+      .assignment__div p#Division,
+      .assignment__div p#MultipleOperations {
+        font-weight: bold;
+        color: var(--color-text);
+        margin-top: var(--spacing-xs);
+      }
+
+      details {
+        background-color: var(--color-light);
+        border: 1px solid var(--color-border);
+        border-radius: var(--border-radius-md);
+        padding: var(--spacing-md);
+        max-width: 600px;
+        margin-bottom: var(--spacing-md);
+        transition: box-shadow 0.3s ease;
+      }
+
+      details:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      summary {
+        font-size: var(--font-size-lg);
+        font-weight: var(--heading-font-weight);
+        color: var(--color-dark);
+        cursor: pointer;
+        margin-bottom: var(--spacing-sm);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="assignment__div">
+        <details>
+          <summary>Dictionary Assignment</summary>
+          <div>
+            <h4>JavaScript Object (Dictionary)</h4>
+            <p>
+              Click the button below to display a value from a JavaScript object
+              (dictionary).
+            </p>
+            <br />
+            <p><strong>Result:</strong></p>
+            <p id="Dictionary">Result will appear here</p>
+            <button onclick="displayDictionaryValue()">
+              Show Dictionary Values
+            </button>
+          </div>
+        </details>
+        <br />
+        <hr />
+        <br />
+      </div>
+    </div>
+  </body>
+</html>
