@@ -75,3 +75,18 @@ function logicalOperatorsExample() {
   `;
   document.getElementById("logicalOperatorsResult").innerHTML = output;
 }
+
+function notOperatorExample() {
+  const notFalse = !false; // true
+  const notTrue = !true;   // false
+  const notZero = !0;      // true
+  const notOne = !1;       // false
+
+  const output = `
+    <code>!false</code> → ${notFalse} <br>
+    <code>!true</code> → ${notTrue} <br>
+    <code>!0</code> → ${notZero} <br>
+    <code>!1</code> → ${notOne}
+  `;
+  document.getElementById("notOperatorResult").innerHTML = output;
+}
