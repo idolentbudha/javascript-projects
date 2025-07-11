@@ -4,6 +4,17 @@ function showTypeOf() {
   document.getElementById("typeOfResult").innerHTML = resultContent;
 }
 
+function showBooleanComparison() {
+  let isGreater = 10 > 5;
+  let isLesser = 3 < 1;
+
+  const output = `
+    <code>let isGreater = 10 > 5;</code> → ${isGreater} (<em>${typeof isGreater}</em>)<br>
+    <code>let isLesser = 3 < 1;</code> → ${isLesser} (<em>${typeof isLesser}</em>)
+  `;
+  document.getElementById("booleanResult").innerHTML = output;
+}
+
 function typeCoercionExample() {
   let number = 5;
   let text = " apples";
