@@ -24,8 +24,8 @@ function typeCoercionExample() {
 }
 
 function showInfinityExamples() {
-  let positiveInfinity = 1.7976931348623157E+10308;
-  let negativeInfinity = -1.7976931348623157E+10308;
+  let positiveInfinity = 1.7976931348623157e10308;
+  let negativeInfinity = -1.7976931348623157e10308;
 
   const output = `
     <code>let positiveInfinity = 1.7976931348623157E+10308;</code><br>
@@ -47,10 +47,10 @@ function doubleEqualsExample() {
 }
 
 function tripleEqualsExample() {
-  const sameTypeSameValue = 100 === 100;              // true
-  const diffTypeDiffValue = 100 === "200";            // false
-  const diffTypeSameValue = 100 === "100";            // false
-  const sameTypeDiffValue = 100 === 200;              // false
+  const sameTypeSameValue = 100 === 100; // true
+  const diffTypeDiffValue = 100 === "200"; // false
+  const diffTypeSameValue = 100 === "100"; // false
+  const sameTypeDiffValue = 100 === 200; // false
 
   const output = `
     <code>100 === 100</code> → ${sameTypeSameValue} <br>
@@ -59,4 +59,19 @@ function tripleEqualsExample() {
     <code>100 === 200</code> → ${sameTypeDiffValue}
   `;
   document.getElementById("tripleEqualsResult").innerHTML = output;
+}
+
+function logicalOperatorsExample() {
+  const andTrue = (10 > 5) && (20 > 15);
+  const andFalse = (10 > 5) && (2 > 15);
+  const orTrue = (10 > 5) || (2 > 15);
+  const orFalse = (1 > 10) || (3 > 20);
+
+  const output = `
+    <code>(10 > 5) && (20 > 15)</code> → ${andTrue} <br>
+    <code>(10 > 5) && (2 > 15)</code> → ${andFalse} <br>
+    <code>(10 > 5) || (2 > 15)</code> → ${orTrue} <br>
+    <code>(1 > 10) || (3 > 20)</code> → ${orFalse}
+  `;
+  document.getElementById("logicalOperatorsResult").innerHTML = output;
 }
