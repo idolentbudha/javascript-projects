@@ -34,3 +34,29 @@ function showInfinityExamples() {
   `;
   document.getElementById("infinityResult").innerHTML = output;
 }
+
+function doubleEqualsExample() {
+  let comparisonTrue = 5 == "5"; // true due to type coercion
+  let comparisonFalse = 5 == "6"; // false
+
+  const output = `
+    <code>5 == "5"</code> → ${comparisonTrue} <br>
+    <code>5 == "6"</code> → ${comparisonFalse}
+  `;
+  document.getElementById("doubleEqualsResult").innerHTML = output;
+}
+
+function tripleEqualsExample() {
+  const sameTypeSameValue = 100 === 100;              // true
+  const diffTypeDiffValue = 100 === "200";            // false
+  const diffTypeSameValue = 100 === "100";            // false
+  const sameTypeDiffValue = 100 === 200;              // false
+
+  const output = `
+    <code>100 === 100</code> → ${sameTypeSameValue} <br>
+    <code>100 === "200"</code> → ${diffTypeDiffValue} <br>
+    <code>100 === "100"</code> → ${diffTypeSameValue} <br>
+    <code>100 === 200</code> → ${sameTypeDiffValue}
+  `;
+  document.getElementById("tripleEqualsResult").innerHTML = output;
+}
