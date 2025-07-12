@@ -27,3 +27,16 @@ function generateError() {
 
   document.getElementById("resultMain").innerHTML = addNumberSample();
 }
+
+function checkHour() {
+  var methodAssignmentResult = document.getElementById(
+    "methodAssignmentResult"
+  );
+  if (new Date().getHours() < 18) {
+    methodAssignmentResult.innerHTML =
+      "Hello there, the time is with you today.";
+  } else {
+    methodAssignmentResult.innerHTML =
+      "Sorry, please try next time at some other hour.";
+  }
+}
