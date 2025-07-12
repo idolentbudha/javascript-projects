@@ -40,3 +40,12 @@ function checkHour() {
       "Sorry, please try next time at some other hour.";
   }
 }
+function isEligibleToVote() {
+  var age = document.getElementById("Age").value;
+  var ageResult_P = document.getElementById("isEligibleResult");
+  if (age > 18) {
+    ageResult_P.innerHTML = "Yes your are ready to vote.";
+  } else {
+    ageResult_P.innerHTML = "Sorry, you can vote only when you are old enough.";
+  }
+}
