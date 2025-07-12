@@ -49,3 +49,16 @@ function isEligibleToVote() {
     ageResult_P.innerHTML = "Sorry, you can vote only when you are old enough.";
   }
 }
+
+function generateGreetingMessage() {
+  var time = new Date().getHours();
+  var reply = "";
+  if (time < 12 && time > 0) {
+    reply = "Hey there, GOOD MORNING.";
+  } else if (time >= 12 && time < 18) {
+    reply = "Good Afternoon.";
+  } else {
+    reply = "Good night.";
+  }
+  document.getElementById("GrettingMessage").innerHTML = reply;
+}
