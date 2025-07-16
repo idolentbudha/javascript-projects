@@ -12,3 +12,8 @@ function sliceMethod() {
   var section = sentence.slice(27, 33);
   document.getElementById("SliceResult").innerHTML = section;
 }
+
+function convertToString() {
+  var x = 123;
+  document.getElementById("NumberToString").innerHTML = x.toString();
+}
