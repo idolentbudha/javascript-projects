@@ -17,3 +17,10 @@ function convertToString() {
   var x = 123;
   document.getElementById("NumberToString").innerHTML = x.toString();
 }
+
+function precisionMethod() {
+  var num = 123938.301239854019421124;
+  var precisedNumber = num.toPrecision(10);
+  var result = `${num}.toPrecision(10) = ${precisedNumber} `;
+  document.getElementById("precisionResult").innerHTML = result;
+}
