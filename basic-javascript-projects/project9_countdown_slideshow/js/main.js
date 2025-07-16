@@ -25,3 +25,19 @@ function countdown() {
     }
   }, 1000);
 }
+var imageIndex = 0;
+function slideImage() {
+  const slideImages = document.getElementsByClassName("slideImg");
+  if (imageIndex >= slideImages.length - 1) {
+    imageIndex = 0;
+  } else {
+    imageIndex += 1;
+  }
+  slideImages[imageIndex].style.display = "none";
+  // for (var i = 0; i < slideImages.length; i++) {
+  //   console.log(slideImages[i]);
+  //   if (imageIndex != imageIndex) {
+  //     slideImages[imageIndex].style.display = "none";
+  //   }
+  // }
+}
