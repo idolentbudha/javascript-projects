@@ -132,22 +132,33 @@
         height: 40vw;
       }
       .carousel img {
-        object-fit: contain;
+        object-fit: cover;
         position: absolute;
-        /* display: none; */
       }
-
-      /* .carousel img:nth-child(1) {
-        object-fit: contain;
-        position: absolute;
-        display: inline-block;
-      } */
+      .carouselbtn_div_container {
+        /* height: 100%; */
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .carouselbtn_div_container a {
+        font-size: var(--font-size-lg);
+        padding: var(--spacing-lg);
+      }
+      .carouselbtn_div_container a:hover {
+        background-color: #343a40;
+      }
     </style>
   </head>
   <body>
     <div class="">
       <div class="carousel__div_container">
-        <div onclick="slideImage()" class="carousel">
+        <div class="carousel">
+          <div class="carouselbtn_div_container">
+            <a class="prev" onclick="previouseImg()">❮</a>
+            <a class="next" onclick="nextImage()">❯</a>
+          </div>
           <img class="slideImg" src="./images/1.jpeg" />
           <img class="slideImg" src="./images/2.jpg" />
           <img class="slideImg" src="./images/3.jpg" />

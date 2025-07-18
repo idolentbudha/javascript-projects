@@ -28,16 +28,29 @@ function countdown() {
 var imageIndex = 0;
 function slideImage() {
   const slideImages = document.getElementsByClassName("slideImg");
+  console.log("imageIndex:", imageIndex);
   if (imageIndex >= slideImages.length - 1) {
     imageIndex = 0;
   } else {
     imageIndex += 1;
   }
-  slideImages[imageIndex].style.display = "none";
-  // for (var i = 0; i < slideImages.length; i++) {
-  //   console.log(slideImages[i]);
-  //   if (imageIndex != imageIndex) {
-  //     slideImages[imageIndex].style.display = "none";
-  //   }
-  // }
+
+  for (var i = 0; i < slideImages.length; i++) {
+    console.log(slideImages[i]);
+    if (imageIndex != i) {
+      slideImages[i].style.display = "none";
+    } else {
+      slideImages[i].style.display = "inline";
+    }
+  }
+}
+
+function previouseImg() {
+  imageIndex - 1;
+  slideImage();
+}
+
+function nextImage() {
+  slideImage();
+  imageIndex + 1;
 }
