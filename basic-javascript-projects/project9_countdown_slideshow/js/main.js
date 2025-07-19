@@ -27,7 +27,14 @@ function countdown() {
 }
 var imageIndex = 0;
 function slideImage() {
+  const root = document.documentElement;
   const slideImages = document.getElementsByClassName("slideImg");
+  const carouselIndicators = document.getElementsByClassName(
+    "carouselindicator_div"
+  );
+  const secondaryColor = getComputedStyle(root)
+    .getPropertyValue("--color-secondary")
+    .trim();
   console.log("imageIndex:", imageIndex);
   if (imageIndex >= slideImages.length - 1) {
     imageIndex = 0;
@@ -39,8 +46,10 @@ function slideImage() {
     console.log(slideImages[i]);
     if (imageIndex != i) {
       slideImages[i].style.display = "none";
+      carouselIndicators[i].style.backgroundColor = "black";
     } else {
       slideImages[i].style.display = "inline";
+      carouselIndicators[i].style.backgroundColor = secondaryColor;
     }
   }
 }
