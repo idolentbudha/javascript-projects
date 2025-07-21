@@ -124,8 +124,10 @@ summary {
   height: 40vw;
 }
 .carousel img {
-  object-fit: cover;
+  object-fit: contain;
   position: absolute;
+  opacity: 1;
+  transition: opacity 5s;
 }
 .carouselbtn_div_container {
   height: 100%;
@@ -139,25 +141,40 @@ summary {
 .carouselbtn_div_container a {
   font-size: var(--font-size-lg);
   padding: var(--spacing-lg);
+  background-color: rgba(0, 0, 0, 0.15);
+  color: var(--color-background);
 }
 .carouselbtn_div_container a:hover {
   background-color: #343a40;
 }
+
+.slideImg {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.slideImg.active {
+  visibility: visible;
+  opacity: 1;
+}
+
 .carouselindicator_div_container {
-  position: absolute;
-  z-index: 1;
   bottom: 0;
   width: 100%;
   text-align: center;
+  margin-top: var(--spacing-md);
 }
 
 .carouselindicator_div {
   height: var(--spacing-md);
   width: var(--spacing-md);
   border-radius: 50%;
-  background-color: black;
   display: inline-block;
+  background-color: black;
+  transition: background-color 0.3s ease;
 }
-.carouselindicator_div:nth-child(1) {
+
+.carouselindicator_div.active {
   background-color: var(--color-secondary);
 }

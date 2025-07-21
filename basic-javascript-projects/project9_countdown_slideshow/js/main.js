@@ -26,40 +26,32 @@ function countdown() {
   }, 1000);
 }
 var imageIndex = 0;
+const slideImages = document.getElementsByClassName("slideImg");
+const carouselIndicators = document.getElementsByClassName("carouselindicator_div");
+
 function slideImage() {
   const root = document.documentElement;
-  const slideImages = document.getElementsByClassName("slideImg");
-  const carouselIndicators = document.getElementsByClassName(
-    "carouselindicator_div"
-  );
   const secondaryColor = getComputedStyle(root)
     .getPropertyValue("--color-secondary")
     .trim();
-  console.log("imageIndex:", imageIndex);
-  if (imageIndex >= slideImages.length - 1) {
-    imageIndex = 0;
-  } else {
-    imageIndex += 1;
-  }
 
-  for (var i = 0; i < slideImages.length; i++) {
-    console.log(slideImages[i]);
-    if (imageIndex != i) {
-      slideImages[i].style.display = "none";
-      carouselIndicators[i].style.backgroundColor = "black";
+  for (let i = 0; i < slideImages.length; i++) {
+    if (imageIndex !== i) {
+      slideImages[i].classList.remove("active");
+      carouselIndicators[i].classList.remove("active");
     } else {
-      slideImages[i].style.display = "inline";
-      carouselIndicators[i].style.backgroundColor = secondaryColor;
+      slideImages[i].classList.add("active");
+      carouselIndicators[i].classList.add("active");
     }
   }
 }
 
 function previouseImg() {
-  imageIndex - 1;
+  imageIndex = (imageIndex - 1 + slideImages.length) % slideImages.length;
   slideImage();
 }
 
 function nextImage() {
+  imageIndex = (imageIndex + 1) % slideImages.length;
   slideImage();
-  imageIndex + 1;
 }
