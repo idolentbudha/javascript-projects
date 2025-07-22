@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .slider_div_wrapper {
+        width: 100%;
+      }
+      .slider {
+        width: 100%;
+        background-color: red;
+        min-height: 60vmin;
+        position: relative;
+      }
+      .slider_div_preview {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+      }
+      .slider > img {
+        width: 0%;
+        height: 0%;
+        object-fit: cover;
+        /* visibility: hidden; */
+        position: absolute;
+        z-index: 1;
+        /* transition: 4s; */
+      }
+
+      .slider > img:first-child {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        z-index: 1;
+        transition: 4s;
+      }
+
+      .slideImg.active {
+        visibility: visible;
+      }
+
+      .slider_div_preview img {
+        height: 20em;
+        width: 10em;
+        object-fit: cover;
+        transform: translateX(0px);
+      }
+      .slidePreviewImg.active {
+        border: solid black 5px;
+        transform: translate(-50px);
+        transition: transform 1s ease;
+      }
+      .sliderBtn_div_wrapper {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        margin-top: 100px;
+      }
+      .sliderBtn {
+        font-size: 20px;
+        padding: 20px;
+        background-color: grey;
+        color: white;
+      }
+      .sliderBtn_div_wrapper a:hover {
+        background-color: rgb(59, 58, 58);
+      }
+    </style>
+    <script>
+      let ImageIndex = 0;
+
+      function updateSlider() {
+        const previewImages =
+          document.getElementsByClassName("slidePreviewImg");
+        // const sliderImages = document.getElementsByClassName("slideImg");
+        const slider = document.getElementsByClassName("slider");
+        for (let i = 0; i < previewImages.length; i++) {
+          if (ImageIndex === i) {
+            previewImages[i].classList.add("active");
+            // sliderImages[i].classList.add("active");
+            slider[0].append(previewImages[i]);
+          } else {
+            previewImages[i].classList.remove("active");
+            // sliderImages[i].classList.remove("active");
+            // slider[0].prepend(previewImages[i]);
+          }
+        }
+      }
+
+      function next() {
+        const previewImages =
+          document.getElementsByClassName("slidePreviewImg");
+        ImageIndex = (ImageIndex + 1) % previewImages.length;
+        updateSlider();
+      }
+
+      function prev() {
+        const previewImages =
+          document.getElementsByClassName("slidePreviewImg");
+        ImageIndex =
+          (ImageIndex - 1 + previewImages.length) % previewImages.length;
+        updateSlider();
+      }
+    </script>
+  </head>
+  <body>
+    <div class="sliderBtn_div_wrapper">
+      <a onclick="prev()" class="sliderBtn">←</a>
+      <a onclick="next()" class="sliderBtn">→</a>
+    </div>
+    <div class="slider_div_wrapper">
+      <div class="slider_div_preview">
+        <img class="slidePreviewImg active" src="./images/1.jpeg" />
+        <img class="slidePreviewImg" src="./images/2.jpg" />
+        <img class="slidePreviewImg" src="./images/3.jpg" />
+        <img class="slidePreviewImg" src="./images/4.jpg" />
+      </div>
+      <div class="slider"></div>
+    </div>
+  </body>
+</html>

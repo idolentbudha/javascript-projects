@@ -143,6 +143,7 @@ summary {
   padding: var(--spacing-lg);
   background-color: rgba(0, 0, 0, 0.15);
   color: var(--color-background);
+  transition: background-color 1s ease;
 }
 .carouselbtn_div_container a:hover {
   background-color: #343a40;
