@@ -20,3 +20,34 @@ function constantFunction() {
   document.getElementById("Contant").innerHTML =
     `Name: ${person.name}, Age: ${person.age}, Job: ${person.job}, Country: ${person.country}`;
 }
+
+// Function that utilizes a while loop
+function whileLoopFunction() {
+  let result = "";
+  let i = 1;
+  while (i <= 5) {
+    result += `Number: ${i} <br>`;
+    i++;
+  }
+  document.getElementById("WhileLoop").innerHTML = result;
+}
+
+// Function that utilizes a for loop
+function forLoopFunction() {
+  let text = "";
+  for (let i = 0; i < 5; i++) {
+    text += `Index: ${i} <br>`;
+  }
+  document.getElementById("ForLoop").innerHTML = text;
+}
+
+// Create an object using "let"
+function letObjectFunction() {
+  let car = {
+    make: "Toyota",
+    model: "Corolla",
+    year: 2020,
+  };
+  document.getElementById("LetObject").innerHTML =
+    `Car: ${car.make} ${car.model}, Year: ${car.year}`;
+}
