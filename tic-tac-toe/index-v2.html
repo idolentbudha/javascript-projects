@@ -50,6 +50,7 @@
 
       table {
         /* border-style: hidden; */
+        margin-top: var(--spacing-lg);
         border-collapse: collapse;
       }
       td {
@@ -78,6 +79,7 @@
         flex-direction: column;
         align-items: center;
         margin: 0 var(--spacing-xxl);
+        position: relative;
       }
       .settings_div_container {
         width: 100%;
@@ -120,6 +122,37 @@
       .player_img.inactive {
         filter: grayscale(1);
       }
+      .modal {
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(86 79 64 / 60%);
+        transition: opacity 0.4s ease;
+      }
+      .modal.show {
+        visibility: visible;
+        opacity: 1;
+      }
+      .modal_div_content {
+        background: white;
+        padding: 2rem;
+        border-radius: var(--border-radius-md);
+        text-align: center;
+        width: 30%;
+        height: 20%;
+        margin: auto;
+        transform: scale(0.3) translateY(150%);
+        opacity: 0;
+        transition: transform 0.3s ease;
+      }
+      .modal.show .modal_div_content {
+        transform: scale(1) translateY(50%);
+        opacity: 1;
+      }
     </style>
   </head>
   <body>
@@ -128,15 +161,11 @@
 
       <div class="settings_div_container">
         <!-- <div class="icon_div_container">
-          <p class="icon_p">🔈</p>
-          <p class="icon_p">🔇</p>
-        </div> -->
-        <div class="icon_div_container">
           <img src="./images/volume.png" />
         </div>
         <div class="icon_div_container">
           <img src="./images/volume-mute.png" />
-        </div>
+        </div> -->
         <div onclick="reset()" class="icon_div_container">
           <img src="./images/reload.png" />
         </div>
@@ -162,6 +191,17 @@
         <img id="CircleImage" class="player_img" src="./images/circle.png" />
         <img id="CrossImage" class="player_img" src="./images/cross.png" />
       </div>
+      <div id="winModal" class="modal">
+        <div class="modal_div_content">
+          <h2 id="winMessage">Player X wins!</h2>
+          <button
+            onclick="closeModal()"
+            style="margin-top: 1rem; padding: 0.5rem 1rem"
+          >
+            Play Again
+          </button>
+        </div>
+      </div>
     </div>
     <script>
       const PLAYER_CROSS = "X";
@@ -174,20 +214,6 @@
       let Board = DEFAULT_BOARD.map((row) => [...row]);
 
       let activePlayer = PLAYER_CROSS;
-
-      //   let WinCondition = [
-      //     //row
-      //     [0, 1, 2],
-      //     [3, 4, 5],
-      //     [6, 7, 8],
-      //     //column
-      //     [0, 3, 6],
-      //     [1, 4, 6],
-      //     [2, 5, 8],
-      //     //diagonals
-      //     [0, 4, 8],
-      //     [2, 4, 6],
-      //   ];
 
       function placePlayer(element) {
         // element.innerHTML = activePlayer;
@@ -289,8 +315,9 @@
           alert("sorry click on right spot");
         }
         //check win or draw
+        console.log("checkWin(); ", checkWin());
         if (checkWin()) {
-          alert(`Player${CurrentPlayer} wins`);
+          showWinModal(CurrentPlayer);
         } else {
           showActivePlayer();
         }
@@ -300,7 +327,6 @@
       }
 
       function showActivePlayer() {
-        console.log("heelo");
         const CircleImage = document.getElementById("CircleImage");
         const CrossImage = document.getElementById("CrossImage");
         if (activePlayer == PLAYER_CROSS) {
@@ -320,6 +346,18 @@
           cell.classList.remove("takenplace_td_style");
           cell.style.removeProperty("background-image");
         }
+      }
+      function showWinModal(winner) {
+        const modal = document.getElementById("winModal");
+        const message = document.getElementById("winMessage");
+        message.textContent = `Player ${winner} wins!`;
+        modal.classList.add("show");
+      }
+
+      function closeModal() {
+        document.getElementById("winModal").classList.remove("show");
+        showActivePlayer();
+        reset();
       }
       main();
     </script>
