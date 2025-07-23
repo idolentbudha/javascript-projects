@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        /* Typography */
+        --font-family-base: "Inter", sans-serif;
+        --font-size-base: 1rem; /* 16px */
+
+        --font-size-xs: 0.75rem; /* 12px */
+        --font-size-sm: 0.875rem; /* 14px */
+        --font-size-md: 1.125rem; /* 18px */
+        --font-size-lg: 1.25rem; /* 20px */
+        --font-size-xl: 1.5rem; /*24px*/
+        --font-size-xxl: 1.875rem; /*30px*/
+        --font-size-xxxl: 2rem; /*32px*/
+        --line-height-base: 1.5;
+        --heading-font-weight: 700;
+        --body-font-weight: 400;
+
+        /* Spacing */
+        --spacing-xxs: 0.25rem; /* 4px */
+        --spacing-xs: 0.5rem; /* 8px */
+        --spacing-sm: 0.75rem; /* 12px */
+        --spacing-md: 1rem; /* 16px */
+        --spacing-lg: 1.5rem; /* 24px */
+        --spacing-xl: 2rem; /* 32px */
+        --spacing-xxl: 3rem; /* 48px */
+
+        /* Border Radius */
+        --border-radius-sm: 0.25rem;
+        --border-radius-md: 0.5rem;
+        --border-radius-lg: 0.75rem;
+        --border-radius-full: 9999px;
+      }
+
+      html {
+        font-family: var(--font-family-base);
+      }
+      body {
+        background-color: #fdf0e0;
+      }
+
+      h1 {
+        font-size: var(--font-size-xxxl);
+      }
+
+      table {
+        /* border-style: hidden; */
+        border-collapse: collapse;
+      }
+      td {
+        padding: 50px;
+        border: solid 2px rgba(252, 169, 3, 0.8);
+        cursor: pointer;
+        text-align: center;
+        width: 8em;
+        height: 8em;
+        background-color: transparent;
+        transition: background-color 0.5s ease;
+      }
+      td:hover {
+        background-color: rgba(252, 169, 3, 0.1);
+      }
+
+      .takenplace_td_style {
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-origin: content-box;
+      }
+
+      .wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 var(--spacing-xxl);
+      }
+      .settings_div_container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: var(--spacing-md);
+      }
+      .icon_div_container {
+        padding: var(--spacing-sm);
+        background-color: #23c2a3;
+        border-radius: var(--border-radius-md);
+        gap: var(--spacing-md);
+        transform: scale(1);
+        transition: transform 0.4s ease;
+      }
+      .icon_div_container:hover {
+        filter: grayscale(0.5);
+        transform: scale(0.9);
+      }
+
+      .icon_div_container img {
+        width: 2em;
+        height: 2em;
+      }
+
+      /*TURN*/
+      .turn_div_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        gap: 5px;
+        margin-top: var(--spacing-md);
+      }
+      .player_img {
+        width: 2.5em;
+        height: 2.5em;
+      }
+      .player_img.inactive {
+        filter: grayscale(1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Tic Tac Toe</h1>
+
+      <div class="settings_div_container">
+        <!-- <div class="icon_div_container">
+          <p class="icon_p">🔈</p>
+          <p class="icon_p">🔇</p>
+        </div> -->
+        <div class="icon_div_container">
+          <img src="./images/volume.png" />
+        </div>
+        <div class="icon_div_container">
+          <img src="./images/volume-mute.png" />
+        </div>
+        <div onclick="reset()" class="icon_div_container">
+          <img src="./images/reload.png" />
+        </div>
+      </div>
+      <table>
+        <tr>
+          <td data-element-id="0" onclick="placeXO(this)"></td>
+          <td data-element-id="1" onclick="placeXO(this)"></td>
+          <td data-element-id="2" onclick="placeXO(this)"></td>
+        </tr>
+        <tr>
+          <td data-element-id="3" onclick="placeXO(this)"></td>
+          <td data-element-id="4" onclick="placeXO(this)"></td>
+          <td data-element-id="5" onclick="placeXO(this)"></td>
+        </tr>
+        <tr>
+          <td data-element-id="6" onclick="placeXO(this)"></td>
+          <td data-element-id="7" onclick="placeXO(this)"></td>
+          <td data-element-id="8" onclick="placeXO(this)"></td>
+        </tr>
+      </table>
+      <div class="turn_div_container">
+        <img id="CircleImage" class="player_img" src="./images/circle.png" />
+        <img id="CrossImage" class="player_img" src="./images/cross.png" />
+      </div>
+    </div>
+    <script>
+      const PLAYER_CROSS = "X";
+      const PLAYER_CIRCLE = "O";
+      const DEFAULT_BOARD = [
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""],
+      ];
+      let Board = DEFAULT_BOARD.map((row) => [...row]);
+
+      let activePlayer = PLAYER_CROSS;
+
+      //   let WinCondition = [
+      //     //row
+      //     [0, 1, 2],
+      //     [3, 4, 5],
+      //     [6, 7, 8],
+      //     //column
+      //     [0, 3, 6],
+      //     [1, 4, 6],
+      //     [2, 5, 8],
+      //     //diagonals
+      //     [0, 4, 8],
+      //     [2, 4, 6],
+      //   ];
+
+      function placePlayer(element) {
+        // element.innerHTML = activePlayer;
+        const imageName =
+          activePlayer == PLAYER_CROSS ? "cross.png" : "circle.png";
+        element.style.backgroundImage = `url("images/${imageName}")`;
+        element.classList.add("takenplace_td_style");
+
+        activePlayer =
+          activePlayer == PLAYER_CROSS ? PLAYER_CIRCLE : PLAYER_CROSS;
+      }
+      function isSpotTaken(row, col) {
+        return Board[row][col] == "";
+      }
+
+      function checkWin() {
+        const winConditions = [
+          // Rows
+          [
+            [0, 0],
+            [0, 1],
+            [0, 2],
+          ],
+          [
+            [1, 0],
+            [1, 1],
+            [1, 2],
+          ],
+          [
+            [2, 0],
+            [2, 1],
+            [2, 2],
+          ],
+          // Columns
+          [
+            [0, 0],
+            [1, 0],
+            [2, 0],
+          ],
+          [
+            [0, 1],
+            [1, 1],
+            [2, 1],
+          ],
+          [
+            [0, 2],
+            [1, 2],
+            [2, 2],
+          ],
+          // Diagonals
+          [
+            [0, 0],
+            [1, 1],
+            [2, 2],
+          ],
+          [
+            [0, 2],
+            [1, 1],
+            [2, 0],
+          ],
+        ];
+
+        for (let condition of winConditions) {
+          const [a, b, c] = condition;
+          if (
+            Board[a[0]][a[1]] &&
+            Board[a[0]][a[1]] === Board[b[0]][b[1]] &&
+            Board[a[0]][a[1]] === Board[c[0]][c[1]]
+          ) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function placeXO(element) {
+        console.log(Board);
+        const CurrentPlayer = activePlayer;
+        const elementId = parseInt(element.getAttribute("data-element-id"));
+        if (
+          (elementId == 0 || elementId == 1 || elementId == 2) &&
+          isSpotTaken(0, elementId)
+        ) {
+          Board[0][elementId] = activePlayer;
+          placePlayer(element);
+        } else if (
+          (elementId == 3 || elementId == 4 || elementId == 5) &&
+          isSpotTaken(1, elementId % 3)
+        ) {
+          Board[1][elementId % 3] = activePlayer;
+          placePlayer(element);
+        } else if (
+          (elementId == 6 || elementId == 7 || elementId == 8) &&
+          isSpotTaken(2, elementId % 3)
+        ) {
+          Board[2][elementId % 3] = activePlayer;
+          placePlayer(element);
+        } else {
+          alert("sorry click on right spot");
+        }
+        //check win or draw
+        if (checkWin()) {
+          alert(`Player${CurrentPlayer} wins`);
+        } else {
+          showActivePlayer();
+        }
+      }
+      function main() {
+        showActivePlayer();
+      }
+
+      function showActivePlayer() {
+        console.log("heelo");
+        const CircleImage = document.getElementById("CircleImage");
+        const CrossImage = document.getElementById("CrossImage");
+        if (activePlayer == PLAYER_CROSS) {
+          CrossImage.classList.remove("inactive");
+          CircleImage.classList.add("inactive");
+        } else if (activePlayer == PLAYER_CIRCLE) {
+          CrossImage.classList.add("inactive");
+          CircleImage.classList.remove("inactive");
+        }
+      }
+
+      function reset() {
+        Board = DEFAULT_BOARD.map((row) => [...row]);
+        const cells = document.getElementsByTagName("td");
+        for (const cell of cells) {
+          // console.log(cells[i]);
+          cell.classList.remove("takenplace_td_style");
+          cell.style.removeProperty("background-image");
+        }
+      }
+      main();
+    </script>
+  </body>
+</html>
