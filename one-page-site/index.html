@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Awesome One-Page Website</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+
+    <link href="css/lightbox.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header id="home">
+      <nav class="navbar">
+        <div class="container">
+          <a href="#home" class="logo">MyBrand</a>
+          <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </nav>
+
+      <div class="hero-section">
+        <div class="container">
+          <h1>Welcome to My Awesome Website</h1>
+          <p>Your ultimate solution for creative web development.</p>
+          <a href="#contact" class="btn">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="about" class="section about-section">
+      <div class="container">
+        <h2>About Us</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>
+              We are a dedicated team of professionals passionate about creating
+              innovative and high-quality web solutions. Our mission is to help
+              businesses establish a strong online presence and achieve their
+              digital goals.
+            </p>
+            <p>
+              With years of experience in web design, development, and digital
+              marketing, we bring your ideas to life with precision and
+              creativity. We believe in crafting unique user experiences that
+              leave a lasting impression.
+            </p>
+          </div>
+          <div class="about-image">
+            <img src="images/about-us.jpg" alt="About Us Team" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section services-section bg-light">
+      <div class="container">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+          <div class="service-item">
+            <h3>Web Design</h3>
+            <p>
+              Stunning and responsive designs tailored to your brand identity.
+            </p>
+          </div>
+          <div class="service-item">
+            <h3>Web Development</h3>
+            <p>
+              Robust and scalable web applications built with modern
+              technologies.
+            </p>
+          </div>
+          <div class="service-item">
+            <h3>SEO & Marketing</h3>
+            <p>Boost your online visibility and reach a wider audience.</p>
+          </div>
+          <div class="service-item">
+            <h3>Content Creation</h3>
+            <p>
+              Engaging and compelling content that resonates with your users.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section portfolio-section">
+      <div class="container">
+        <h2>Our Portfolio</h2>
+        <div class="gallery">
+          <a
+            href="images/full-size-image1.jpg"
+            data-lightbox="portfolio-gallery"
+            data-title="Modern Website Design"
+          >
+            <img src="images/thumbnail-image1.jpg" alt="Portfolio Image 1" />
+          </a>
+          <a
+            href="images/full-size-image2.jpg"
+            data-lightbox="portfolio-gallery"
+            data-title="E-commerce Platform"
+          >
+            <img src="images/thumbnail-image2.jpg" alt="Portfolio Image 2" />
+          </a>
+          <a
+            href="images/full-size-image3.jpg"
+            data-lightbox="portfolio-gallery"
+            data-title="Mobile App UI/UX"
+          >
+            <img src="images/thumbnail-image3.jpg" alt="Portfolio Image 3" />
+          </a>
+          <a
+            href="images/full-size-image4.jpg"
+            data-lightbox="portfolio-gallery"
+            data-title="Branding & Identity"
+          >
+            <img src="images/thumbnail-image4.jpg" alt="Portfolio Image 4" />
+          </a>
+          <a
+            href="images/full-size-image5.jpg"
+            data-lightbox="portfolio-gallery"
+            data-title="Custom Web Application"
+          >
+            <img src="images/thumbnail-image5.jpg" alt="Portfolio Image 5" />
+          </a>
+          <a
+            href="images/full-size-image6.jpg"
+            data-lightbox="portfolio-gallery"
+            data-title="Creative Landing Page"
+          >
+            <img src="images/thumbnail-image6.jpg" alt="Portfolio Image 6" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section bg-dark">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>Have a project in mind? Let's connect!</p>
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message" rows="5" required></textarea>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+        <div class="contact-info">
+          <p>Email: info@mybrand.com</p>
+          <p>Phone: +1 (123) 456-7890</p>
+          <p>Address: 123 Web Dev Street, London, UK</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 MyBrand. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/lightbox-plus-jquery.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
