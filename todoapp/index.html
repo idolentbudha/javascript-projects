@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple To-Do App</title>
+    <meta
+      name="description"
+      content="Manage your tasks efficiently with this simple and responsive to-do app."
+    />
+  </head>
+  <style>
+    :root {
+      /*colors*/
+      --color-primary: #007bff;
+      --color-secondary: #6c757d;
+      --color-success: #28a745;
+      --color-danger: #dc3545;
+      --color-light: #f8f9fa;
+      --color-dark: #343a40;
+      --color-text: #212529;
+      --color-background: #ffffff;
+      --color-border: #dee2e6;
+
+      /* Typography */
+      --font-family-base: "Inter", sans-serif;
+      --font-size-base: 1rem; /* 16px */
+      --font-size-sm: 0.875rem; /* 14px */
+      --font-size-lg: 1.25rem; /* 20px */
+      --line-height-base: 1.5;
+      --heading-font-weight: 700;
+      --body-font-weight: 400;
+
+      /* Spacing */
+      --spacing-xxs: 0.25rem; /* 4px */
+      --spacing-xs: 0.5rem; /* 8px */
+      --spacing-sm: 0.75rem; /* 12px */
+      --spacing-md: 1rem; /* 16px */
+      --spacing-lg: 1.5rem; /* 24px */
+      --spacing-xl: 2rem; /* 32px */
+      --spacing-xxl: 3rem; /* 48px */
+
+      /* Border Radius */
+      --border-radius-sm: 0.25rem;
+      --border-radius-md: 0.5rem;
+      --border-radius-lg: 0.75rem;
+      --border-radius-full: 9999px;
+    }
+
+    body {
+      margin: 0;
+      padding: 0%;
+    }
+
+    a {
+      text-decoration: none;
+    }
+    a::after {
+      text-decoration: none;
+    }
+    a.btn {
+      padding: var(--spacing-sm);
+    }
+    a.btn:hover {
+      background-color: var(--color-secondary);
+      color: var(--color-light);
+    }
+
+    ul {
+      list-style: none;
+    }
+    li.animate-in {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+
+    li {
+      padding: var(--spacing-sm);
+      border-bottom: 1px solid var(--color-border);
+      opacity: 1;
+      transform: translateX(0px);
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+
+    .wrapper {
+      width: 70%;
+      margin: 0 auto;
+      height: 70vh;
+    }
+
+    .toolbar_div_container {
+      display: flex;
+      justify-content: flex-end;
+    }
+    input {
+      border: none;
+      outline: none;
+    }
+    input:focus {
+      border-bottom: solid 1px #212529;
+    }
+    .todo_div_container {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      height: 100%;
+    }
+    .todo_div_container section {
+      height: 100%;
+      overflow-y: scroll;
+    }
+    .todo_list {
+      padding: var(--spacing-md);
+      border-radius: var(--border-radius-md);
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+  <body>
+    <main>
+      <noscript>Please enable JavaScript to use this to-do app.</noscript>
+      <div class="wrapper" role="region" aria-label="Task Manager">
+        <h1>App</h1>
+        <div class="toolbar_div_container">
+          <button
+            onclick="addTask()"
+            id="Add_Task_Btn"
+            class="btn"
+            aria-label="Add Task"
+          >
+            ➕
+          </button>
+        </div>
+        <div class="todo_div_container">
+          <section class="todolist_div_container">
+            <h2>Todo List</h2>
+            <ul class="todo_list" id="Todo_List"></ul>
+          </section>
+          <details>
+            <summary id="Completed_List_Summary">Completed Tasks</summary>
+            <ul id="Completed_List"></ul>
+          </details>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      var getTaskIcon = (value) => {
+        return value ? "✅" : "⬜️";
+      };
+      var todoList = [
+        { id: 1, task: "Task 1", isChecked: true },
+        { id: 2, task: "Task 2", isChecked: false },
+      ];
+
+      function renderTodoList() {
+        var TODO_LIST_UL = document.getElementById("Todo_List");
+        var COMPLETED_TODO_LIST_UL = document.getElementById("Completed_List");
+        TODO_LIST_UL.innerHTML = "";
+        COMPLETED_TODO_LIST_UL.innerHTML = "";
+        todoList.forEach((todo) => {
+          if (!todo.isChecked) {
+            TODO_LIST_UL.innerHTML += generateListElement(todo);
+          } else {
+            COMPLETED_TODO_LIST_UL.innerHTML += generateListElement(todo);
+          }
+        });
+        animateNewItems();
+        updateCompleteTaskCount();
+      }
+
+      function generateListElement(todo) {
+        return `<li class="animate-in" data-id="${todo.id}">
+                    <span>
+                        <a data-element-id="${
+                          todo.id
+                        }" onclick="toggleTask(this)"  class="btn todo_btn">
+                            ${getTaskIcon(todo.isChecked)}
+                        </a>
+                    </span>
+                    <label for="todo-task-${todo.id}" class="sr-only">Task ${
+          todo.id
+        }</label>
+                    <input id="todo-task-${todo.id}" placeholder="new task" ${
+          todo.isChecked && todo.task.length > 0 ? "disabled" : ""
+        } value="${todo.task}">
+                </li>`;
+      }
+
+      function toggleTask(element) {
+        const taskId = parseInt(element.getAttribute("data-element-id"));
+        const todo = todoList.find((todo) => todo.id === taskId);
+        if (todo) {
+          todo.isChecked = !todo.isChecked;
+          renderTodoList();
+        }
+      }
+
+      function addTask() {
+        var ADD_TASK_BTN = document.getElementById("Add_Task_Btn");
+        var TODO_LIST_UL = document.getElementById("Todo_List");
+        const newTask = {
+          id: Date.now(),
+          task: "",
+          isChecked: false,
+        };
+        todoList.push(newTask);
+        renderTodoList();
+      }
+
+      function updateCompleteTaskCount() {
+        document.getElementById(
+          "Completed_List_Summary"
+        ).innerHTML = `Completed Tasks (${
+          todoList.filter((todo) => todo.isChecked).length
+        })`;
+      }
+
+      function animateNewItems() {
+        requestAnimationFrame(() => {
+          document.querySelectorAll("li.animate-in").forEach((li) => {
+            li.offsetWidth; // Force reflow
+            li.classList.remove("animate-in");
+          });
+        });
+      }
+      function applyAnimation(selector, animationClass) {
+        requestAnimationFrame(() => {
+          document.querySelectorAll(selector).forEach((el) => {
+            el.offsetWidth; // Trigger reflow
+            el.classList.remove(animationClass);
+          });
+        });
+      }
+
+      renderTodoList();
+    </script>
+  </body>
+</html>
