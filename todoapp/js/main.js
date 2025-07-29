@@ -73,21 +73,36 @@ function renderTodoList() {
 // Generate a single list item element for a given task
 function generateListElement(todo) {
   return `<li class="animate-in" data-id="${todo.id}">
-                    <span>
-                        <a data-element-id="${
-                          todo.id
-                        }" onclick="toggleTask(this)"  class="btn todo_btn">
-                            ${getTaskIcon(todo.isChecked)}
-                        </a>
-                    </span>
-                    <label for="todo-task-${todo.id}" class="sr-only">
-                        Task ${todo.id}
-                    </label>
-                    <input id="todo-task-${todo.id}" data-id="${
-    todo.id
-  }" placeholder="new task" ${
-    todo.isChecked && todo.task.length > 0 ? "disabled" : ""
-  } value="${todo.task}">
+                    <div class="task_div_container">
+                        <div>
+                            <span>
+                                <a data-element-id="${
+                                  todo.id
+                                }" onclick="toggleTask(this)"  class="btn todo_btn">
+                                    ${getTaskIcon(todo.isChecked)}
+                                </a>
+                            </span>
+                            <label for="todo-task-${todo.id}" class="sr-only">
+                                Task ${todo.id}
+                            </label>
+                            <input id="todo-task-${todo.id}" 
+                                    typedata-id="${todo.id}" 
+                                    placeholder="new task" 
+                                    type="text"
+                                    value="${todo.task}"
+                                    ${
+                                      todo.isChecked && todo.task.length > 0
+                                        ? "disabled"
+                                        : ""
+                                    }
+                            />
+                        </div>    
+                        <button aria-label="Delete Task" class="btn btn-danger" 
+                                onclick="deleteTask(${todo.id})"
+                        >
+                                🗑️
+                        </button>
+                    </div>
                 </li>`;
 }
 
@@ -167,4 +182,9 @@ function closeModal() {
 // Hide the modal and continue execution
 function continueTask() {
   closeModal();
+}
+
+function deleteTask(taskId){
+  todoList = todoList.filter((todo) => todo.id !== taskId);
+  renderTodoList();
 }
