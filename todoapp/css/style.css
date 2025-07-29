@@ -83,6 +83,7 @@ li {
 .toolbar_div_container {
   display: flex;
   justify-content: flex-end;
+  gap: var(--spacing-lg);
 }
 input {
   border: none;
@@ -115,4 +116,25 @@ input:focus {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* Modal is initially hidden and non-interactive */
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+/* When modal is visible, make it fully opaque and interactive */
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
 }

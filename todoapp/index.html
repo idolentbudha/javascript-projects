@@ -18,6 +18,14 @@
         <h1>App</h1>
         <div class="toolbar_div_container">
           <button
+            onclick="saveTask()"
+            id="Save_Task_Btn"
+            class="btn"
+            aria-label="Save Task"
+          >
+            💾
+          </button>
+          <button
             onclick="addTask()"
             id="Add_Task_Btn"
             class="btn"
@@ -38,5 +46,14 @@
         </div>
       </div>
     </main>
+    <div id="overlay" class="modal">
+      <div class="modal_div_content">
+        <h2 id="modal_title">Saving...</h2>
+        <div id="modal_buttons" style="margin-top: 1rem; display: none">
+          <button onclick="closeModal()">Close</button>
+          <button onclick="continueTask()">Continue</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
