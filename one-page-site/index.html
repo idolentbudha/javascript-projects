@@ -5,14 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Awesome One-Page Website</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-
-    <link href="css/lightbox.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <header id="home">
@@ -104,9 +97,10 @@
         <h2>Our Portfolio</h2>
         <div class="gallery">
           <a
-            href="images/full-size-image1.jpeg"
+            data-og-image="images/full-size-image1.jpeg"
             data-lightbox="portfolio-gallery"
             data-title="Modern Website Design"
+            onclick="openModal(this)"
           >
             <img
               src="images/thumbnails/thumbnail-image1.jpg"
@@ -114,9 +108,10 @@
             />
           </a>
           <a
-            href="images/full-size-image2.jpeg"
+            data-og-image="images/full-size-image2.jpeg"
             data-lightbox="portfolio-gallery"
             data-title="E-commerce Platform"
+            onclick="openModal(this)"
           >
             <img
               src="images/thumbnails/thumbnail-image2.jpg"
@@ -124,9 +119,10 @@
             />
           </a>
           <a
-            href="images/full-size-image3.jpeg"
+            data-og-image="images/full-size-image3.jpeg"
             data-lightbox="portfolio-gallery"
             data-title="Mobile App UI/UX"
+            onclick="openModal(this)"
           >
             <img
               src="images/thumbnails/thumbnail-image3.jpg"
@@ -134,9 +130,10 @@
             />
           </a>
           <a
-            href="images/full-size-image4.jpeg"
+            data-og-image="images/full-size-image4.jpeg"
             data-lightbox="portfolio-gallery"
             data-title="Branding & Identity"
+            onclick="openModal(this)"
           >
             <img
               src="images/thumbnails/thumbnail-image4.jpg"
@@ -144,9 +141,10 @@
             />
           </a>
           <a
-            href="images/full-size-image5.jpeg"
+            data-og-image="images/full-size-image5.jpeg"
             data-lightbox="portfolio-gallery"
             data-title="Custom Web Application"
+            onclick="openModal(this)"
           >
             <img
               src="images/thumbnails/thumbnail-image5.jpg"
@@ -154,9 +152,10 @@
             />
           </a>
           <a
-            href="images/full-size-image6.jpg"
+            data-og-image="images/full-size-image6.jpg"
             data-lightbox="portfolio-gallery"
             data-title="Creative Landing Page"
+            onclick="openModal(this)"
           >
             <img
               src="images/thumbnails/thumbnail-image6.jpg"
@@ -166,6 +165,13 @@
         </div>
       </div>
     </section>
+
+    <div id="LightBox-Modal">
+      <div class="modal-box">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div id="lightbox-modal-content"></div>
+      </div>
+    </div>
 
     <section id="contact" class="section contact-section bg-dark">
       <div class="container">
@@ -190,9 +196,6 @@
         <p>&copy; 2025 MyBrand. All rights reserved.</p>
       </div>
     </footer>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/lightbox-plus-jquery.min.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
