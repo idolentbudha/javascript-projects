@@ -95,7 +95,7 @@
     <section id="portfolio" class="section portfolio-section">
       <div class="container">
         <h2>Our Portfolio</h2>
-        <div class="gallery">
+        <div id="Gallery" class="gallery">
           <a
             data-og-image="images/full-size-image1.jpeg"
             data-lightbox="portfolio-gallery"
@@ -167,9 +167,15 @@
     </section>
 
     <div id="LightBox-Modal">
-      <div class="modal-box"> 
+      <div class="modal-box">
         <span class="close-modal" onclick="closeModal()">&times;</span>
+        <span onclick="prevImage()" class="prev-span">&lang; </span>
+        <span onclick="nextImage()" class="next-span">&rang; </span>
+
         <div id="lightbox-modal-content"></div>
+        <div class="indicator-div-container">
+          <p id="indicator">0/1</p>
+        </div>
       </div>
     </div>
 
