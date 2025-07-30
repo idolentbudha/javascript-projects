@@ -3,7 +3,7 @@ function openModal(element) {
 
   const img = document.createElement("img");
   img.src = ogImage;
-  img.classList.add("show");
+  // img.classList.add("show");
 
   const LightBoxModal = document.getElementById("LightBox-Modal");
   const modalContent = document.getElementById("lightbox-modal-content");
@@ -11,6 +11,11 @@ function openModal(element) {
 
   const LightBox = document.getElementById("LightBox-Modal");
   LightBox.classList.add("show");
+
+  //animate image
+  img.onload = function () {
+    img.classList.add("show");
+  };
 }
 
 function closeModal() {
