@@ -5,87 +5,95 @@ const GALLERY_IMAGES_COUNT = document
 const GALLERY_IMAGES = Array.from(
   document.getElementById("Gallery").getElementsByTagName("a")
 ).map((v) => v.getAttribute("data-og-image"));
-console.log(GALLERY_IMAGES);
 
 let LIGHTBOX_IMAGE_COUNTER = 0;
 
-function renderImageOn(element, imagePath) {
-  const img = document.createElement("img");
+function renderOrGetImage(modalContent, imagePath) {
+  let img = document.getElementById("lightbox-img");
+  if (!img) {
+    img = document.createElement("img");
+    img.id = "lightbox-img";
+    modalContent.appendChild(img);
+  }
+  img.classList.remove("show");
   img.src = imagePath;
-  element.appendChild(img);
+  img.onload = function () {
+    img.classList.add("show");
+  };
   return img;
 }
+
 function openModal(element) {
   const ogImagePath = element.getAttribute("data-og-image");
   const index = GALLERY_IMAGES.indexOf(ogImagePath);
+  if (index === -1) return;
+
   LIGHTBOX_IMAGE_COUNTER = index;
   setIndicator();
 
   const modalContent = document.getElementById("lightbox-modal-content");
-  const img = renderImageOn(modalContent, ogImagePath);
+  renderOrGetImage(modalContent, ogImagePath);
 
   const LightBox = document.getElementById("LightBox-Modal");
   LightBox.classList.add("show");
 
-  //animate image
-  img.onload = function () {
-    img.classList.add("show");
-  };
+  // Lock scroll
+  document.body.style.overflow = "hidden";
 }
 
 function closeModal() {
   const LightBoxModal = document.getElementById("LightBox-Modal");
   const modalContent = document.getElementById("lightbox-modal-content");
-  modalContent.innerHTML = "";
   LightBoxModal.classList.remove("show");
+
+  // Unlock scroll
+  document.body.style.overflow = "";
+
+  // Optionally clear src
+  const img = document.getElementById("lightbox-img");
+  if (img) img.src = "";
+}
+
+function changeImage(direction = 1) {
+  LIGHTBOX_IMAGE_COUNTER =
+    (LIGHTBOX_IMAGE_COUNTER + direction + GALLERY_IMAGES_COUNT) % GALLERY_IMAGES_COUNT;
+
+  setIndicator();
+
+  const modalContent = document.getElementById("lightbox-modal-content");
+  renderOrGetImage(modalContent, GALLERY_IMAGES[LIGHTBOX_IMAGE_COUNTER]);
 }
 
 function nextImage() {
-  const modalContent = document.getElementById("lightbox-modal-content");
-  const currentImagePath = modalContent.childNodes[0].getAttribute("src");
-  const currentImageIndex = GALLERY_IMAGES.indexOf(currentImagePath);
-
-  if (LIGHTBOX_IMAGE_COUNTER >= GALLERY_IMAGES_COUNT - 1) {
-    LIGHTBOX_IMAGE_COUNTER = 0;
-  } else {
-    LIGHTBOX_IMAGE_COUNTER++;
-  }
-
-  setIndicator();
-
-  modalContent.innerHTML = "";
-
-  const img = modalContent.appendChild(
-    renderImageOn(modalContent, GALLERY_IMAGES[LIGHTBOX_IMAGE_COUNTER])
-  );
-  img.onload = function () {
-    img.classList.add("show");
-  };
+  changeImage(1);
 }
 
 function prevImage() {
-  const modalContent = document.getElementById("lightbox-modal-content");
-  const currentImagePath = modalContent.childNodes[0].getAttribute("src");
-  const currentImageIndex = GALLERY_IMAGES.indexOf(currentImagePath);
-  if (LIGHTBOX_IMAGE_COUNTER <= 0) {
-    LIGHTBOX_IMAGE_COUNTER = GALLERY_IMAGES_COUNT - 1;
-  } else {
-    LIGHTBOX_IMAGE_COUNTER--;
-  }
-  setIndicator();
-
-  modalContent.innerHTML = "";
-
-  const img = modalContent.appendChild(
-    renderImageOn(modalContent, GALLERY_IMAGES[LIGHTBOX_IMAGE_COUNTER])
-  );
-  img.onload = function () {
-    img.classList.add("show");
-  };
+  changeImage(-1);
 }
+
 function setIndicator() {
   const value = `${LIGHTBOX_IMAGE_COUNTER + 1}/${GALLERY_IMAGES_COUNT}`;
-  console.log(value);
   const indicator = document.getElementById("indicator");
-  indicator.textContent = value;
+  if (indicator) {
+    indicator.textContent = value;
+  }
 }
+
+// Keyboard accessibility
+document.addEventListener("keydown", (e) => {
+  const modalVisible = document.getElementById("LightBox-Modal")?.classList.contains("show");
+  if (!modalVisible) return;
+
+  switch (e.key) {
+    case "Escape":
+      closeModal();
+      break;
+    case "ArrowRight":
+      nextImage();
+      break;
+    case "ArrowLeft":
+      prevImage();
+      break;
+  }
+});

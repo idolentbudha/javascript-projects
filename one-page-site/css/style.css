@@ -531,6 +531,7 @@ span.close-modal {
   color: white;
   cursor: pointer;
   z-index: 2;
+  padding: 1em;
 }
 .next-span {
   position: absolute;
@@ -540,6 +541,11 @@ span.close-modal {
   color: white;
   cursor: pointer;
   z-index: 2;
+  padding: 1em;
+}
+.prev-span:hover,
+.next-span:hover {
+  background-color: rgba(44, 62, 80, 0.9);
 }
 .indicator-div-container {
   width: 100%;
