@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /*
+            cubic-bezier(0.7, 0, 0.7, 1.5)
+            cubic-bezier(0.25, 0.4, 0.55, 1.4)
+            cubic-bezier(0.68, -0.55, 0.265, 1.55)
+        */
+      .wrapper,
+      .wrapper2 {
+        background-color: gray;
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .circle,
+      .circle-two {
+        height: 50px;
+        width: 50px;
+        border-radius: 25px;
+        background-color: yellow;
+        opacity: 0;
+        transform: translateX(100px);
+      }
+
+      .circle-two {
+        transform: scale(0);
+        opacity: 1;
+        border: solid 2px black;
+      }
+
+      .circle:nth-child(1).active {
+        opacity: 1;
+        transform: translateX(0px);
+        transition: transform 0.5s cubic-bezier(0.7, 0, 0.7, 1.5),
+          opacity 0.5s ease;
+        transition-delay: 0.3s;
+      }
+      .circle:nth-child(2).active {
+        opacity: 1;
+        transform: translateX(0px);
+        transition: transform 0.5s cubic-bezier(0.7, 0, 0.7, 1.5),
+          opacity 0.5s ease;
+        transition-delay: 0.6s;
+      }
+      .circle:nth-child(3).active {
+        opacity: 1;
+        transform: translateX(0px);
+        transition: transform 0.5s cubic-bezier(0.7, 0, 0.7, 1.5),
+          opacity 0.5s ease;
+        transition-delay: 0.9s;
+      }
+      .circle:nth-child(4).active {
+        opacity: 1;
+        transform: translateX(0px);
+        transition: transform 0.5s cubic-bezier(0.7, 0, 0.7, 1.5),
+          opacity 0.5s ease;
+        transition-delay: 1.2s;
+      }
+
+      /*second circle*/
+      .circle-two:nth-child(1).active {
+        opacity: 1;
+        transform: scale(1);
+        transition: transform 0.5s ease-in-out opacity 0.5s ease;
+        transition-delay: 0.3s;
+      }
+      .circle-two:nth-child(2).active {
+        opacity: 1;
+        transform: scale(1);
+        transition: transform 0.5s cubic-bezier(0.25, 0.4, 0.55, 1.4),
+          opacity 0.5s ease;
+        transition-delay: 0.6s;
+      }
+      .circle-two:nth-child(3).active {
+        opacity: 1;
+        transform: scale(1);
+        transition: transform 0.5s cubic-bezier(0.7, 0, 0.7, 1.5),
+          opacity 0.5s ease;
+        transition-delay: 0.9s;
+      }
+      .circle-two:nth-child(4).active {
+        opacity: 1;
+        transform: scale(1);
+        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+          opacity 0.5s ease;
+        transition-delay: 1.2s;
+      }
+
+      #num {
+        transition: all 1s ease-in;
+      }
+      span {
+        display: inline-block;
+      }
+      /* h1 > span {
+        opacity: 1;
+        transform: translateY(0px);
+      } */
+
+      /* h1 > span.anim-out {
+        opacity: 0;
+        transform: translateY(-30px);
+        transition: transform 0.5s ease-in, opacity 0.5s ease-in;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+    </div>
+    <button onclick="run()">CLick me</button>
+    <br />
+    <br />
+    <div class="wrapper2">
+      <div class="circle-two"></div>
+      <div class="circle-two"></div>
+      <div class="circle-two"></div>
+      <div class="circle-two"></div>
+    </div>
+    <button onclick="runTwo()">CLick me</button>
+    <br />
+    <br />
+    <br />
+    <div id="NumCounter">
+      <h1><span id="num">0</span></h1>
+    </div>
+    <button class="counter-btn" onclick="runCounter()">Run</button>
+  </body>
+  <script>
+    function run() {
+      const circles = document.querySelectorAll(".circle");
+      for (let i = 0; i < circles.length; i++) {
+        circles[i].classList.add("active");
+      }
+    }
+
+    function runTwo() {
+      const circleTwo = document.querySelectorAll(".circle-two");
+      for (let i = 0; i < circleTwo.length; i++) {
+        circleTwo[i].classList.add("active");
+      }
+    }
+    function runCounter() {
+      const numSpan = document.getElementById("num");
+      [1, 2, 4, 5, 6, 7, 8, 9, 10].map((v) => {
+        requestAnimationFrame(() => {
+          numSpan.innerHTML = v;
+        });
+      });
+    }
+  </script>
+</html>
