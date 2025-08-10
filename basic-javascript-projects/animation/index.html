@@ -108,6 +108,16 @@
         transform: translateY(-30px);
         transition: transform 0.5s ease-in, opacity 0.5s ease-in;
       } */
+      .stat {
+        font-size: 2rem;
+        font-weight: bold;
+        font-size: 50px;
+        color: #5700ff;
+      }
+
+      .number {
+        transition: all 0.3s ease-in-out;
+      }
     </style>
   </head>
   <body>
@@ -133,6 +143,7 @@
     <div id="NumCounter">
       <h1><span id="num">0</span></h1>
     </div>
+    <div class="stat"><span class="number" data-target="10">0</span>+</div>
     <button class="counter-btn" onclick="runCounter()">Run</button>
   </body>
   <script>
@@ -157,5 +168,51 @@
         });
       });
     }
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const counters = document.querySelectorAll(".number");
+
+      const animateCounter = (counter) => {
+        const target = +counter.getAttribute("data-target");
+        const duration = 6000; // total animation time in ms
+        const frameRate = 60;
+        const totalFrames = Math.round(duration / (1000 / frameRate));
+        const increment = target / totalFrames;
+        let current = 0;
+        let frame = 0;
+
+        const animate = () => {
+          frame++;
+          current += increment;
+          if (frame < totalFrames) {
+            counter.innerText = Math.ceil(current);
+            requestAnimationFrame(animate);
+          } else {
+            counter.innerText = target;
+          }
+        };
+
+        animate();
+      };
+
+      const observer = new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              observer.unobserve(entry.target); // Only animate once
+            }
+          });
+        },
+        {
+          threshold: 1, // Starts animation when 100% of the number is visible
+        }
+      );
+
+      counters.forEach((counter) => {
+        observer.observe(counter);
+      });
+    });
   </script>
 </html>
