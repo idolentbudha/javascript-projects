@@ -152,6 +152,16 @@
     <div style="padding: 20px">
       <div id="NumCounter">
         <h1><span id="num">0</span></h1>
+        <div
+          id="progress-bar"
+          style="
+            height: 20px;
+            background-color: blue;
+            border-radius: 20px;
+            width: 0%;
+            transition: all 0.5s ease-in-out;
+          "
+        ></div>
       </div>
       <div class="stat"><span class="number" data-target="10">0</span>+</div>
       <button class="counter-btn" onclick="runCounter()">Run</button>
@@ -173,9 +183,10 @@
     }
     function runCounter() {
       const numSpan = document.getElementById("num");
-      const duration = 1000;
+      const ProgressBar = document.getElementById("progress-bar");
+      const duration = 6000;
       const frameRate = 60;
-      const target = 4;
+      const target = 40;
       let frame = 0;
       let incremetValue = 0;
       let currentValue = 0;
@@ -193,11 +204,54 @@
         currentValue += incremetValue;
         console.log("displayValue: ", currentValue, frame);
         numSpan.innerHTML = Math.ceil(currentValue);
+        ProgressBar.style.width = `${(frame / totalFramesToDisplay) * 100}%`;
         if (frame < totalFramesToDisplay) {
           requestAnimationFrame(animate);
         }
       }
       animate();
+    }
+
+    /*OPTIMIZED*/
+    function runCounterV2({
+      target = 40,
+      duration = 6000,
+      onUpdate,
+      onComplete,
+    } = {}) {
+      const startTime = performance.now();
+
+      function animate(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.ceil(progress * target);
+
+        if (onUpdate) onUpdate(value, progress);
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else if (onComplete) {
+          onComplete();
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // Example usage:
+    function startCounter() {
+      const numSpan = document.getElementById("num");
+      const progressBar = document.getElementById("progress-bar");
+
+      runCounterV2({
+        target: 40,
+        duration: 6000,
+        onUpdate: (value, progress) => {
+          numSpan.textContent = value;
+          progressBar.style.width = `${progress * 100}%`;
+        },
+        onComplete: () => console.log("Counter finished!"),
+      });
     }
   </script>
   <script>
