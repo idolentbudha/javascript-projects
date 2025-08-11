@@ -162,11 +162,31 @@
     }
     function runCounter() {
       const numSpan = document.getElementById("num");
-      [1, 2, 4, 5, 6, 7, 8, 9, 10].map((v) => {
-        requestAnimationFrame(() => {
-          numSpan.innerHTML = v;
-        });
-      });
+      const duration = 1000;
+      const frameRate = 60;
+      const target = 4;
+      let frame = 0;
+      let incremetValue = 0;
+      let currentValue = 0;
+      /*
+          
+          To display 1frame it takes     1000 / 60 = 16.66ms
+          So, in 1ms there are 1/16.67 frames
+          in 1000ms there are 1000 * 1/16.67 = 60 frames
+          so in totalFrame there are XDuration * 1/16.67 frames
+      */
+      const totalFramesToDisplay = Math.round(duration / (1000 / frameRate));
+      incremetValue = target / totalFramesToDisplay;
+      function animate() {
+        frame++;
+        currentValue += incremetValue;
+        console.log("displayValue: ", currentValue, frame);
+        numSpan.innerHTML = Math.ceil(currentValue);
+        if (frame < totalFramesToDisplay) {
+          requestAnimationFrame(animate);
+        }
+      }
+      animate();
     }
   </script>
   <script>
