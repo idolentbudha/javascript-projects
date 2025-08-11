@@ -121,30 +121,41 @@
     </style>
   </head>
   <body>
-    <div class="wrapper">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
+    <h1>Principles of Motion Design</h1>
+    <h2>Easing</h2>
+    <div style="padding: 20px">
+      <div class="wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <br />
+      <button onclick="run()">CLick me</button>
     </div>
-    <button onclick="run()">CLick me</button>
     <br />
     <br />
-    <div class="wrapper2">
-      <div class="circle-two"></div>
-      <div class="circle-two"></div>
-      <div class="circle-two"></div>
-      <div class="circle-two"></div>
+    <div style="padding: 20px">
+      <div class="wrapper2">
+        <div class="circle-two"></div>
+        <div class="circle-two"></div>
+        <div class="circle-two"></div>
+        <div class="circle-two"></div>
+      </div>
+      <br />
+      <button onclick="runTwo()">CLick me</button>
     </div>
-    <button onclick="runTwo()">CLick me</button>
     <br />
     <br />
     <br />
-    <div id="NumCounter">
-      <h1><span id="num">0</span></h1>
+    <h2>Value change Animation</h2>
+    <div style="padding: 20px">
+      <div id="NumCounter">
+        <h1><span id="num">0</span></h1>
+      </div>
+      <div class="stat"><span class="number" data-target="10">0</span>+</div>
+      <button class="counter-btn" onclick="runCounter()">Run</button>
     </div>
-    <div class="stat"><span class="number" data-target="10">0</span>+</div>
-    <button class="counter-btn" onclick="runCounter()">Run</button>
   </body>
   <script>
     function run() {
