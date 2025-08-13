@@ -17,15 +17,28 @@
         gap: 20px;
         padding: 20px;
       }
+      .square {
+        height: 50px;
+        width: 50px;
+        background-color: red;
+      }
 
       .circle,
       .circle-two {
         height: 50px;
         width: 50px;
         border-radius: 25px;
-        background-color: yellow;
+        background-color: red;
         opacity: 0;
         transform: translateX(100px);
+      }
+
+      .transformationCircle {
+        height: 50px;
+        width: 50px;
+        border-radius: 25px;
+        background-color: red;
+        opacity: 1;
       }
 
       .circle-two {
@@ -98,6 +111,24 @@
       span {
         display: inline-block;
       }
+      @keyframes rotateAnim {
+        0% {
+          transform: rotate(0deg);
+          border-radius: 0%;
+        }
+        100% {
+          transform: rotate(360deg);
+          border-radius: 50%;
+        }
+      }
+
+      .rotateSquareAnim {
+        animation-name: rotateAnim;
+        animation-duration: 1s;
+        animation-timing-function: ease-in;
+        /* animation-iteration-count: infinite; */
+        animation-fill-mode: forwards;
+      }
       /* h1 > span {
         opacity: 1;
         transform: translateY(0px);
@@ -165,6 +196,17 @@
       </div>
       <div class="stat"><span class="number" data-target="10">0</span>+</div>
       <button class="counter-btn" onclick="runCounter()">Run</button>
+    </div>
+    <h2>Transformation</h2>
+    <div style="padding: 20px">
+      <div class="" style="position: relative">
+        <div id="square" class="square"></div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <button onclick="runTransform()">CLick me</button>
     </div>
   </body>
   <script>
@@ -253,6 +295,11 @@
         onComplete: () => console.log("Counter finished!"),
       });
     }
+
+    const runTransform = () => {
+      const square = document.getElementById("square");
+      square.classList.add("rotateSquareAnim");
+    };
   </script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
