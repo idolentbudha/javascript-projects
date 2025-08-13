@@ -129,6 +129,37 @@
         /* animation-iteration-count: infinite; */
         animation-fill-mode: forwards;
       }
+
+      @keyframes circleToSquare {
+        0% {
+          transform: rotate(0deg);
+          border-radius: 50%;
+        }
+        100% {
+          transform: rotate(-360deg);
+          border-radius: 0%;
+        }
+      }
+
+      .reverseSquareAnim {
+        animation-name: circleToSquare;
+        animation-duration: 1s;
+        animation-timing-function: ease-in;
+        animation-fill-mode: forwards;
+      }
+
+      /* Option 2 transition-based */
+      .square {
+        height: 50px;
+        width: 50px;
+        background-color: red;
+        transition: all 1s ease-in;
+      }
+      .square.circle-shape {
+        border-radius: 50%;
+        transform: rotate(360deg);
+      }
+
       /* h1 > span {
         opacity: 1;
         transform: translateY(0px);
@@ -298,7 +329,20 @@
 
     const runTransform = () => {
       const square = document.getElementById("square");
-      square.classList.add("rotateSquareAnim");
+
+      // Example 1: Keyframes animation toggle
+      if (square.classList.contains("rotateSquareAnim")) {
+        square.classList.remove("rotateSquareAnim");
+        square.classList.add("reverseSquareAnim");
+      } else if (square.classList.contains("reverseSquareAnim")) {
+        square.classList.remove("reverseSquareAnim");
+        square.classList.add("rotateSquareAnim");
+      } else {
+        square.classList.add("rotateSquareAnim");
+      }
+
+      // Example 2: Transition-based toggle (uncomment to try)
+      // square.classList.toggle("circle-shape");
     };
   </script>
   <script>
